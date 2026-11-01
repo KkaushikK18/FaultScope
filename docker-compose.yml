@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: faultscope-postgres
+    environment:
+      POSTGRES_USER: faultscope
+      POSTGRES_PASSWORD: faultscope_password
+      POSTGRES_DB: faultscope_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U faultscope"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: faultscope-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://faultscope:faultscope_password@postgres:5432/faultscope_db
+      DEBUG: "true"
+      LOG_LEVEL: INFO
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+      - ./models:/app/models
+      - ./scripts:/app/scripts
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  postgres_data:
