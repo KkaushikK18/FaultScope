@@ -1,0 +1,14 @@
+﻿{
+  "service_id": "d2164996-6ccd-43fd-a2e3-c5b0599d18e7",
+  "timestamp": "2026-11-01T10:32:48.233+05:30",
+  "cpu_usage_percent": 95.5,
+  "memory_usage_percent": 92.3,
+  "error_rate_percent": 15.8,
+  "p95_latency_ms": 3500.0,
+  "request_rate": 150.0,
+  "source": "test_ml_detection",
+  "labels": {
+    "test_type": "ml_verification",
+    "scenario": "high_anomaly"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "model_name": "isolation_forest",
+  "model_type": "isolation_forest",
+  "saved_at": "2026-11-01T10:27:13.617939",
+  "parameters": {
+    "contamination": 0.1,
+    "n_estimators": 100,
+    "random_state": 42
+  },
+  "score_statistics": {
+    "score_min": -0.10228572029679728,
+    "score_max": 0.12233612704390201
+  },
+  "model_info": {
+    "trained": true,
+    "contamination": 0.1,
+    "n_estimators": 100,
+    "random_state": 42,
+    "score_range": [
+      -0.10228572029679728,
+      0.12233612704390201
+    ],
+    "n_features": 5
+  },
+  "training_metadata": {
+    "service_id": "d2164996-6ccd-43fd-a2e3-c5b0599d18e7",
+    "training_days": 1,
+    "training_window": {
+      "start": "2026-10-31T10:27:12.104893+00:00",
+      "end": "2026-11-01T10:27:12.104893+00:00"
+    },
+    "n_training_samples": 106,
+    "training_stats": {
+      "n_samples": 106,
+      "n_features": 5,
+      "n_anomalies_in_training": 11,
+      "anomaly_rate": 0.10377358490566038,
+      "score_range": [
+        -0.10228572029679728,
+        0.12233612704390201
+      ]
+    }
+  }
+}

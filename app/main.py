@@ -80,7 +80,8 @@ async def health():
 
 
 # API routes
-from app.api.routes import services, telemetry
+from app.api.routes import services, telemetry, anomalies
 
 app.include_router(services.router, prefix=settings.API_V1_PREFIX)
 app.include_router(telemetry.router, prefix=settings.API_V1_PREFIX)
+app.include_router(anomalies.router, prefix=settings.API_V1_PREFIX)

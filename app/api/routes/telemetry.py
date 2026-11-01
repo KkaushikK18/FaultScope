@@ -62,6 +62,17 @@ def ingest_telemetry(
     try:
         service = TelemetryService(db)
         telemetry_record = service.ingest_telemetry(telemetry)
+        
+        # Run anomaly detection on ingested telemetry
+        from app.services.anomaly_service import AnomalyService
+        anomaly_service = AnomalyService(db)
+        
+        try:
+            anomaly_service.detect_from_telemetry(telemetry_record, use_ml=True)
+        except Exception as anomaly_error:
+            # Log but don't fail ingestion if anomaly detection fails
+            logger.error(f"Anomaly detection failed: {anomaly_error}")
+        
         return telemetry_record
         
     except ServiceNotFoundException as e:
